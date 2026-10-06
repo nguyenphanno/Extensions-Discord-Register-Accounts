@@ -1,0 +1,539 @@
+/* ==========================================================================
+   Primitives - buttons, fields, chips, badges.
+   ========================================================================== */
+
+/* --- Button ------------------------------------------------------------- */
+
+.Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--field-height);
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--text-inverse);
+  background: var(--blurple);
+  border: 1px solid transparent;
+  transition: background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-instant) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.Button:hover:not(:disabled) { background: var(--blurple-hover); }
+.Button:active:not(:disabled) { background: var(--blurple-active); transform: translateY(1px); }
+.Button:focus-visible { box-shadow: var(--shadow-focus); outline: none; }
+.Button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.Button--success { background: var(--green); }
+.Button--success:hover:not(:disabled) { background: var(--green-hover); }
+
+.Button--danger { background: var(--red); }
+.Button--danger:hover:not(:disabled) { background: var(--red-hover); }
+.Button--danger:focus-visible { box-shadow: var(--shadow-focus-danger); }
+
+.Button--secondary { background: var(--bg-overlay); color: var(--text-primary); }
+.Button--secondary:hover:not(:disabled) { background: #43454b; }
+
+.Button--ghost { background: transparent; color: var(--text-secondary); }
+.Button--ghost:hover:not(:disabled) { background: var(--bg-raised); color: var(--text-primary); }
+
+.Button--outline {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+.Button--outline:hover:not(:disabled) { border-color: var(--border-strong); background: var(--bg-raised); }
+
+.Button--dangerOutline {
+  background: transparent;
+  color: var(--red);
+  border-color: rgba(218, 55, 60, 0.32);
+}
+.Button--dangerOutline:hover:not(:disabled) { background: var(--red-soft); border-color: var(--red); }
+
+.Button--sm { min-height: 30px; padding: 0 var(--space-3); font-size: var(--text-sm); }
+
+.Button--lg {
+  min-height: 46px;
+  padding: 0 var(--space-6);
+  font-size: var(--text-lg);
+  border-radius: var(--radius-lg);
+}
+
+.Button--block { width: 100%; }
+
+.Button__spinner {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  animation: dra-spin 640ms linear infinite;
+}
+
+/* --- Icon button -------------------------------------------------------- */
+
+.IconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  transition: background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.IconButton:hover:not(:disabled) { background: var(--bg-raised); color: var(--text-primary); }
+.IconButton:active:not(:disabled) { background: var(--bg-overlay); }
+.IconButton:disabled { opacity: 0.4; }
+.IconButton--danger:hover:not(:disabled) { background: var(--red-soft); color: var(--red); }
+.IconButton--active { background: var(--blurple-soft); color: var(--blurple); }
+
+/* --- Field -------------------------------------------------------------- */
+
+.Field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.Field__labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.Field__label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.Field__hint {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+}
+
+.Field__error {
+  font-size: var(--text-sm);
+  color: var(--red);
+}
+
+.Field__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--field-height);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  border: 1px solid transparent;
+  transition: border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.Field__control:hover { border-color: var(--border-subtle); }
+.Field__control:focus-within {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(0, 168, 252, 0.16);
+}
+.Field__control--invalid { border-color: var(--red); }
+
+.Field__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 34px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: var(--text-md);
+  color: var(--text-primary);
+}
+
+.Field__input::placeholder { color: var(--text-faint); }
+.Field__input:disabled { color: var(--text-muted); cursor: not-allowed; }
+
+.Field__input--mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  letter-spacing: 0.02em;
+}
+
+.Field__affix {
+  flex: none;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.Field__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex: none;
+}
+
+.SecretField__value--masked {
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+
+/* --- Select ------------------------------------------------------------- */
+
+.Select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: var(--field-height);
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  border: 1px solid transparent;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.Select:hover { border-color: var(--border-subtle); }
+.Select:focus-within { border-color: var(--border-focus); }
+
+.Select__native {
+  appearance: none;
+  width: 100%;
+  height: 34px;
+  padding: 0 32px 0 var(--space-3);
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: var(--text-md);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.Select__native option {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.Select__chevron {
+  position: absolute;
+  right: var(--space-3);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* --- Toggle ------------------------------------------------------------- */
+
+.Toggle {
+  position: relative;
+  flex: none;
+  width: 40px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  background: var(--border-strong);
+  transition: background var(--duration-normal) var(--ease-out);
+}
+
+.Toggle[aria-checked='true'] { background: var(--green); }
+.Toggle:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.Toggle__knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: transform var(--duration-normal) var(--ease-spring);
+}
+
+.Toggle[aria-checked='true'] .Toggle__knob { transform: translateX(16px); }
+
+/* --- Range -------------------------------------------------------------- */
+
+.Range {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.Range__input {
+  flex: 1 1 auto;
+  appearance: none;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-app);
+  cursor: pointer;
+}
+
+.Range__input::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid var(--blurple);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.Range__input:hover::-webkit-slider-thumb { transform: scale(1.12); }
+.Range__input:focus-visible { box-shadow: var(--shadow-focus); }
+
+.Range__value {
+  flex: none;
+  min-width: 52px;
+  padding: 3px var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--bg-app);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+/* --- Chips & badges ----------------------------------------------------- */
+
+.Chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 22px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--bg-overlay);
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+}
+
+.Chip--accent { background: var(--blurple-soft); color: #b7beff; }
+.Chip--success { background: var(--green-soft); color: #5cd07d; }
+.Chip--warning { background: var(--yellow-soft); color: #f5c451; }
+.Chip--danger { background: var(--red-soft); color: #f07b7e; }
+.Chip--muted { background: rgba(255, 255, 255, 0.04); color: var(--text-muted); }
+
+.Chip--interactive { cursor: pointer; transition: background var(--duration-fast) var(--ease-out); }
+.Chip--interactive:hover { background: var(--bg-raised); color: var(--text-primary); }
+.Chip--selected { background: var(--blurple); color: #fff; }
+
+.Badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 5px;
+  border-radius: var(--radius-pill);
+  background: var(--red);
+  color: #fff;
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.Badge--neutral { background: var(--bg-overlay); color: var(--text-secondary); }
+
+.StatusDot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-app);
+  background: var(--presence-offline);
+}
+
+.StatusDot--online { background: var(--presence-online); }
+.StatusDot--idle { background: var(--presence-idle); }
+.StatusDot--busy { background: var(--presence-dnd); }
+.StatusDot--pulse { animation: dra-pulse 1.6s ease-in-out infinite; }
+
+/* --- Segmented control -------------------------------------------------- */
+
+.Segmented {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-app);
+  gap: 2px;
+}
+
+.Segmented__option {
+  flex: 1 1 auto;
+  padding: 5px var(--space-3);
+  border-radius: var(--radius-xs);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-muted);
+  transition: background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.Segmented__option:hover { color: var(--text-primary); }
+.Segmented__option[aria-pressed='true'] {
+  background: var(--bg-raised);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-low);
+}
+
+/* --- Progress ----------------------------------------------------------- */
+
+.ProgressRing__track { stroke: var(--bg-app); }
+
+.ProgressRing__indicator {
+  stroke: var(--blurple);
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--duration-normal) var(--ease-out);
+}
+
+.ProgressBar {
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-app);
+  overflow: hidden;
+}
+
+.ProgressBar__fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--blurple), #7c5cfc);
+  transition: width var(--duration-normal) var(--ease-out);
+}
+
+/* --- Strength meter ----------------------------------------------------- */
+
+.StrengthMeter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.StrengthMeter__bars {
+  display: flex;
+  gap: 3px;
+  flex: 1 1 auto;
+}
+
+.StrengthMeter__bar {
+  flex: 1 1 0;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-app);
+  transition: background var(--duration-normal) var(--ease-out);
+}
+
+.StrengthMeter__bar--level1 { background: var(--red); }
+.StrengthMeter__bar--level2 { background: var(--yellow); }
+.StrengthMeter__bar--level3 { background: #3ba55d; }
+.StrengthMeter__bar--level4 { background: var(--green); }
+
+.StrengthMeter__label {
+  flex: none;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--text-muted);
+}
+
+/* --- Tooltip ------------------------------------------------------------ */
+
+.Tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+.Tooltip__bubble {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(2px);
+  padding: 5px var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--bg-floating);
+  color: var(--text-primary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+  box-shadow: var(--shadow-high);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+  z-index: 40;
+}
+
+.Tooltip:hover .Tooltip__bubble,
+.Tooltip:focus-within .Tooltip__bubble {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- Empty state -------------------------------------------------------- */
+
+.EmptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-10) var(--space-6);
+  text-align: center;
+}
+
+.EmptyState__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-2xl);
+  background: var(--bg-raised);
+  color: var(--text-faint);
+}
+
+.EmptyState__title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--text-secondary);
+}
+
+.EmptyState__body {
+  max-width: 320px;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-relaxed);
+}
+
+/* --- Skeleton ----------------------------------------------------------- */
+
+.Skeleton {
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    90deg,
+    var(--bg-raised) 0%,
+    var(--bg-overlay) 50%,
+    var(--bg-raised) 100%
+  );
+  background-size: 640px 100%;
+  animation: dra-shimmer 1.4s linear infinite;
+}
+

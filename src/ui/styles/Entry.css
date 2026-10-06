@@ -1,0 +1,20 @@
+/**
+ * Only the subsets the UI can actually render are bundled. Pulling the full
+ * Inter package emits ~40 font files across Greek, Cyrillic and every other
+ * subset, which would triple the extension package for glyphs nothing uses.
+ * Vietnamese is kept because the interface ships in that locale.
+ */
+@import '@fontsource/inter/latin-400.css';
+@import '@fontsource/inter/latin-500.css';
+@import '@fontsource/inter/latin-600.css';
+@import '@fontsource/inter/latin-700.css';
+@import '@fontsource/inter/vietnamese-400.css';
+@import '@fontsource/inter/vietnamese-700.css';
+
+@import './Tokens.css';
+@import './Base.css';
+@import './Primitives.css';
+@import './Surfaces.css';
+@import './Overlays.css';
+@import './Features.css';
+@import './Layout.css';

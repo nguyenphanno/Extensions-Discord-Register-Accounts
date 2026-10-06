@@ -1,0 +1,39 @@
+{
+  "name": "discord-register-accounts-extension",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Discord Register Accounts - temporary mailbox + identity generator browser extension (Manifest V3).",
+  "scripts": {
+    "icons": "node scripts/MakeIcons.mjs",
+    "build": "npm run icons && node scripts/BuildAll.mjs",
+    "dev": "vite build --watch --mode development",
+    "clean": "node scripts/CleanDist.mjs",
+    "rebuild": "npm run clean && npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.5",
+    "dompurify": "^3.2.7",
+    "lucide-react": "^0.545.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.29",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1",
+    "@vitejs/plugin-react": "^5.1.0",
+    "@vitest/coverage-v8": "^5.0.3",
+    "jsdom": "^30.1.2",
+    "lucide-static": "^0.545.0",
+    "sharp": "^0.34.5",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.14",
+    "vitest": "^5.0.3"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-release/
+public/icons/
+*.log
+.DS_Store
+Thumbs.db
+.vite/
+*.tsbuildinfo

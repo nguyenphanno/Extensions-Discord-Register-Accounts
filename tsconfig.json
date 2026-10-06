@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+
+    "types": ["chrome", "node", "vite/client"],
+
+    "baseUrl": ".",
+    "paths": {
+      "@Api/*": ["src/api/*"],
+      "@Email/*": ["src/email/*"],
+      "@Identity/*": ["src/identity/*"],
+      "@Storage/*": ["src/storage/*"],
+      "@Background/*": ["src/background/*"],
+      "@Content/*": ["src/content/*"],
+      "@Shared/*": ["src/shared/*"],
+      "@Ui/*": ["src/ui/*"]
+    }
+  },
+  "include": ["src", "vite.shared.ts", "vite.config.ts", "vite.background.config.ts", "vite.content.config.ts"]
+}

@@ -1,0 +1,507 @@
+/* ==========================================================================
+   Surfaces - app shell, navigation rail, headers, panes.
+   Mirrors Discord's three-column shell: rail / list / content.
+   ========================================================================== */
+
+.AppShell {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  background: var(--bg-app);
+  overflow: hidden;
+}
+
+.AppShell__body {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.AppShell__main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  background: var(--bg-surface);
+}
+
+/* --- Navigation rail ---------------------------------------------------- */
+
+.NavRail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  flex: none;
+  width: var(--rail-width);
+  padding: var(--space-2) 0;
+  background: var(--bg-app);
+  border-right: 1px solid rgba(0, 0, 0, 0.24);
+}
+
+.NavRail__spacer { flex: 1 1 auto; }
+
+.NavRail__divider {
+  width: 24px;
+  height: 1px;
+  background: var(--divider);
+  margin: var(--space-2) 0;
+}
+
+.NavRailItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xl);
+  color: var(--text-secondary);
+  background: var(--bg-raised);
+  transition: border-radius var(--duration-normal) var(--ease-out),
+    background var(--duration-normal) var(--ease-out),
+    color var(--duration-normal) var(--ease-out);
+}
+
+.NavRailItem:hover,
+.NavRailItem--active {
+  border-radius: var(--radius-2xl);
+  background: var(--blurple);
+  color: #fff;
+}
+
+/* The pill Discord shows against the rail for the active item. */
+.NavRailItem__indicator {
+  position: absolute;
+  left: -7px;
+  width: 4px;
+  height: 0;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+  background: #fff;
+  transition: height var(--duration-normal) var(--ease-out);
+}
+
+.NavRailItem--active .NavRailItem__indicator { height: 20px; }
+.NavRailItem:hover .NavRailItem__indicator { height: 12px; }
+
+.NavRailItem__badge {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--radius-pill);
+  border: 3px solid var(--bg-app);
+  background: var(--red);
+  color: #fff;
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+/* --- Header ------------------------------------------------------------- */
+
+.PanelHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: none;
+  min-height: var(--header-height);
+  padding: 0 var(--space-3);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--divider);
+  box-shadow: var(--shadow-low);
+  z-index: 5;
+}
+
+.PanelHeader--inset { padding-left: var(--space-4); }
+
+/*
+ * Popup header. 400px minus the 52px rail leaves too little room for a logo, a
+ * title and a subtitle at once, so the compact variant drops the logo (the rail
+ * already carries it) and keeps the title at a readable size.
+ */
+.PanelHeader--compact {
+  min-height: 38px;
+  padding: 0 var(--space-2) 0 var(--space-3);
+}
+
+.PanelHeader--compact .PanelHeader__title {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+}
+
+.PanelHeader--compact .PanelHeader__actions { gap: 0; }
+
+/* --- Clipboard countdown pill ------------------------------------------- */
+
+.ClipboardPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--yellow-soft);
+  color: #f5c451;
+  font-size: var(--text-xs);
+  white-space: nowrap;
+}
+
+.ClipboardPill__time {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.ClipboardPill__label {
+  color: var(--text-muted);
+}
+
+/* The popup has no room for the word, only the digits. */
+.PanelHeader--compact .ClipboardPill__label { display: none; }
+
+.PanelHeader__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.PanelHeader__logo {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 6px rgba(88, 101, 242, 0.35);
+}
+
+.PanelHeader__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.PanelHeader__title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.PanelHeader__subtitle {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.PanelHeader__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+}
+
+/* --- Panes -------------------------------------------------------------- */
+
+.Pane {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.Pane__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+}
+
+.Pane__scroll--padded { padding: var(--space-4); }
+
+.Pane__sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+
+.Pane__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--divider);
+}
+
+.Pane__section:last-child { border-bottom: none; }
+
+.Pane__footer {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-app);
+  border-top: 1px solid var(--divider);
+}
+
+/* --- Section card ------------------------------------------------------- */
+
+.SectionCard {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  background: var(--bg-sidebar);
+  border: 1px solid var(--divider);
+  overflow: hidden;
+}
+
+.SectionCard__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--divider);
+}
+
+.SectionCard__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-lg);
+  background: var(--blurple-soft);
+  color: #a5aefb;
+}
+
+.SectionCard__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.SectionCard__title { font-size: var(--text-md); font-weight: var(--weight-semibold); }
+
+.SectionCard__description {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+}
+
+.SectionCard__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+
+/* --- Setting row -------------------------------------------------------- */
+
+.SettingRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 34px;
+}
+
+.SettingRow__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.SettingRow__label {
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+}
+
+.SettingRow__description {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+}
+
+.SettingRow__control {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 52%;
+}
+
+.SettingRow--stacked {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-3);
+}
+
+.SettingRow--stacked .SettingRow__control { max-width: 100%; }
+
+/* --- Avatar ------------------------------------------------------------- */
+
+.Avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.02em;
+  user-select: none;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+}
+
+.Avatar--sm { width: 28px; height: 28px; font-size: var(--text-xs); }
+.Avatar--md { width: 36px; height: 36px; font-size: var(--text-sm); }
+.Avatar--lg { width: 52px; height: 52px; font-size: var(--text-lg); }
+.Avatar--xl { width: 72px; height: 72px; font-size: var(--text-2xl); }
+
+.Avatar__presence {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid var(--bg-surface);
+  background: var(--presence-offline);
+}
+
+.Avatar__wrap {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+
+.Avatar__presence--online { background: var(--presence-online); }
+.Avatar__presence--idle { background: var(--presence-idle); }
+.Avatar__presence--busy { background: var(--presence-dnd); }
+
+/* --- Identity card ------------------------------------------------------ */
+
+.IdentityCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(160deg, var(--bg-sidebar) 0%, var(--bg-surface) 100%);
+  border: 1px solid var(--divider-strong);
+  box-shadow: var(--shadow-medium);
+}
+
+.IdentityCard__hero {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.IdentityCard__headline {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.IdentityCard__name {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+  line-height: var(--leading-tight);
+  overflow-wrap: anywhere;
+}
+
+.IdentityCard__handle {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.IdentityCard__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.IdentityCard__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* --- Copy field --------------------------------------------------------- */
+
+.CopyField {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--bg-app);
+  border: 1px solid var(--divider);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.CopyField:hover { border-color: var(--border-subtle); }
+
+.CopyField__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.CopyField__label {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.CopyField__value {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.CopyField__value--masked {
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.CopyField__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex: none;
+}
+

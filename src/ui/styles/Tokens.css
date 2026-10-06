@@ -1,0 +1,162 @@
+/* ==========================================================================
+   Discord-native design tokens.
+   Values are lifted from Discord's own dark theme so the extension reads as a
+   first-party surface rather than a themed copy. Two variants are provided;
+   `data-theme` on <html> selects one.
+   ========================================================================== */
+
+:root {
+  /* Surfaces, darkest to lightest - mirrors Discord's elevation model */
+  --bg-app: #1e1f22;
+  --bg-sidebar: #2b2d31;
+  --bg-surface: #313338;
+  --bg-raised: #35373c;
+  --bg-overlay: #383a40;
+  --bg-input: #383a40;
+  --bg-floating: #111214;
+  --bg-scrim: rgba(0, 0, 0, 0.72);
+  --bg-code: #2b2d31;
+
+  /* Text ramp */
+  --text-primary: #f2f3f5;
+  --text-secondary: #b5bac1;
+  --text-muted: #949ba4;
+  --text-faint: #80848e;
+  --text-inverse: #ffffff;
+  --text-link: #00a8fc;
+  --text-on-blurple: #ffffff;
+
+  /* Brand */
+  --blurple: #5865f2;
+  --blurple-hover: #4752c4;
+  --blurple-active: #3c45a5;
+  --blurple-soft: rgba(88, 101, 242, 0.12);
+  --blurple-softer: rgba(88, 101, 242, 0.06);
+  --blurple-ring: rgba(88, 101, 242, 0.45);
+
+  /* Status */
+  --green: #23a55a;
+  --green-hover: #248046;
+  --green-soft: rgba(35, 165, 90, 0.12);
+  --yellow: #f0b232;
+  --yellow-soft: rgba(240, 178, 50, 0.12);
+  --red: #da373c;
+  --red-hover: #a12828;
+  --red-soft: rgba(218, 55, 60, 0.12);
+  --fuchsia: #eb459e;
+  --fuchsia-soft: rgba(235, 69, 158, 0.12);
+
+  /* Presence dots */
+  --presence-online: #23a55a;
+  --presence-idle: #f0b232;
+  --presence-dnd: #f23f43;
+  --presence-offline: #80848e;
+
+  /* Borders */
+  --border-subtle: #3f4147;
+  --border-strong: #4e5058;
+  --border-focus: #00a8fc;
+  --divider: rgba(255, 255, 255, 0.06);
+  --divider-strong: rgba(255, 255, 255, 0.1);
+
+  /* Radii - Discord's scale */
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-low: 0 1px 0 rgba(4, 4, 5, 0.2), 0 1.5px 0 rgba(0, 0, 0, 0.05),
+    0 2px 0 rgba(4, 4, 5, 0.05);
+  --shadow-medium: 0 4px 4px rgba(0, 0, 0, 0.16);
+  --shadow-high: 0 8px 16px rgba(0, 0, 0, 0.24);
+  --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.44);
+  --shadow-focus: 0 0 0 3px var(--blurple-ring);
+  --shadow-focus-danger: 0 0 0 3px rgba(218, 55, 60, 0.4);
+
+  /* Type scale */
+  --font-sans: 'Inter', 'gg sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', 'SFMono-Regular', ui-monospace, monospace;
+
+  --text-2xs: 10px;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 13px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+
+  --leading-tight: 1.2;
+  --leading-normal: 1.375;
+  --leading-relaxed: 1.55;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Spacing - 4px base, Discord's own rhythm */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.2, 0.9, 0.3, 1.15);
+  --duration-instant: 80ms;
+  --duration-fast: 130ms;
+  --duration-normal: 220ms;
+  --duration-slow: 380ms;
+
+  /* Layout */
+  --rail-width: 52px;
+  --header-height: 44px;
+  --field-height: 38px;
+  --toast-width: 340px;
+}
+
+/* Midnight - a deeper variant for users who want less surface glare. */
+[data-theme='discordMidnight'] {
+  --bg-app: #141518;
+  --bg-sidebar: #1b1c20;
+  --bg-surface: #212226;
+  --bg-raised: #26272c;
+  --bg-overlay: #2c2d33;
+  --bg-input: #2c2d33;
+  --bg-floating: #0b0c0e;
+  --bg-code: #1b1c20;
+  --border-subtle: #313339;
+  --border-strong: #3d4046;
+}
+
+/* Reduced motion is user-controlled in Settings and also honours the OS. */
+[data-reduce-motion='true'] *,
+[data-reduce-motion='true'] *::before,
+[data-reduce-motion='true'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

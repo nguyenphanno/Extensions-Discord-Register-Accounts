@@ -1,0 +1,278 @@
+/* ==========================================================================
+   Feature surfaces - inbox, vault, activity, register.
+   ========================================================================== */
+
+/* --- List rows (shared by inbox / vault / activity) --------------------- */
+
+.ListRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--divider);
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.ListRow:hover { background: var(--bg-raised); }
+
+.ListRow--active {
+  background: var(--bg-overlay);
+  box-shadow: inset 2px 0 0 var(--blurple);
+}
+
+.ListRow--unread { background: rgba(88, 101, 242, 0.05); }
+.ListRow--unread .ListRow__title { color: var(--text-primary); font-weight: var(--weight-semibold); }
+
+.ListRow__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ListRow__topLine {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.ListRow__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ListRow__meta {
+  flex: none;
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.ListRow__subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ListRow__trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex: none;
+}
+
+/* --- Mail reader -------------------------------------------------------- */
+
+.MailReader {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  background: var(--bg-surface);
+}
+
+.MailReader__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: none;
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--divider);
+}
+
+.MailReader__subject {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  overflow-wrap: anywhere;
+}
+
+.MailReader__from {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.MailReader__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  background: #fff;
+}
+
+.MailReader__frame {
+  width: 100%;
+  min-height: 320px;
+  border: 0;
+  background: #fff;
+}
+
+.MailReader__plain {
+  padding: var(--space-5);
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: #1a1a1a;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.MailReader__notice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: none;
+  padding: var(--space-2) var(--space-4);
+  background: var(--yellow-soft);
+  color: #f5c451;
+  font-size: var(--text-sm);
+  border-bottom: 1px solid rgba(240, 178, 50, 0.24);
+}
+
+.VerificationBanner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: none;
+  padding: var(--space-3) var(--space-4);
+  background: linear-gradient(90deg, var(--blurple-soft), transparent);
+  border-bottom: 1px solid var(--divider);
+}
+
+.VerificationBanner__code {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.16em;
+  color: #b7beff;
+}
+
+/* --- Log feed ----------------------------------------------------------- */
+
+.LogFeed {
+  display: flex;
+  flex-direction: column;
+}
+
+.LogEntry {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--divider);
+  font-size: var(--text-sm);
+}
+
+.LogEntry__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  flex: none;
+  padding-top: 3px;
+}
+
+.LogEntry__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-faint);
+}
+
+.LogEntry--info .LogEntry__dot { background: var(--blurple); }
+.LogEntry--success .LogEntry__dot { background: var(--green); }
+.LogEntry--warning .LogEntry__dot { background: var(--yellow); }
+.LogEntry--error .LogEntry__dot { background: var(--red); }
+
+.LogEntry__line {
+  width: 1px;
+  flex: 1 1 auto;
+  background: var(--divider);
+}
+
+.LogEntry__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.LogEntry__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.LogEntry__kind {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.LogEntry__time { font-size: var(--text-xs); color: var(--text-faint); }
+
+.LogEntry__message { color: var(--text-secondary); overflow-wrap: anywhere; }
+
+.LogEntry__detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: 2px;
+}
+
+/* --- Stat cards --------------------------------------------------------- */
+
+.StatGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+  gap: var(--space-2);
+}
+
+.StatCard {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--bg-sidebar);
+  border: 1px solid var(--divider);
+}
+
+.StatCard__label {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.StatCard__value {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.StatCard--success .StatCard__value { color: #5cd07d; }
+.StatCard--warning .StatCard__value { color: #f5c451; }
+.StatCard--danger .StatCard__value { color: #f07b7e; }
+.StatCard--accent .StatCard__value { color: #b7beff; }
